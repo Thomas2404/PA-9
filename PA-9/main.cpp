@@ -11,7 +11,7 @@ int main(void)
 	Object o1(sf::Vector2f(500, 500), 50);
 	Boid b1(sf::Vector2f(500, 500), 25, 100, 90);
 
-
+	//test comment
 
 	// initialize boids
 
