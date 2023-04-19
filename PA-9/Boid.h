@@ -45,6 +45,9 @@ public:
 		this->direction += rotation;
 	}
 
+	bool operator==(const Boid& other);
+	bool operator!=(const Boid& other);
+
 private:
 	float viewDistance;
 	float fov;

@@ -20,8 +20,13 @@ public:
 	// Inserts a new node at the front of the linked list
 	bool insert();
 
-
 	Node* getHeadPtr();
+
+
+	// BOID RULES
+
+		// Move boids towards their precieved center of the flock
+		sf::Vector2f& rule1(Boid boid);
 
 private:
 	int boidCount;

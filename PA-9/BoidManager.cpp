@@ -67,3 +67,31 @@ Node* BoidManager::getHeadPtr()
 {
 	return this->pHead;
 }
+
+// BOID RULES
+
+// Move boids towards their precieved center of the flock
+sf::Vector2f& BoidManager::rule1(Boid boid)
+{
+	Node* pCur = this->pHead;
+	sf::Vector2f* perceivedCenter;
+
+	while (pCur != nullptr)
+	{
+		if (*pCur->getBoid() != boid)
+		{
+			*perceivedCenter += pCur->getBoid()->getPosition();
+		}
+
+		pCur = pCur->getNextPtr();
+	}
+
+	perceivedCenter->x /= (this->boidCount - 1);
+	perceivedCenter->y /= (this->boidCount - 1);
+
+	*perceivedCenter -= boid.getPosition();
+	perceivedCenter->x /= 100;
+	perceivedCenter->y /= 100;
+
+	return (*perceivedCenter);
+}
