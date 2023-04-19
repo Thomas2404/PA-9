@@ -2,9 +2,19 @@
 
 #include "Object.h"
 
+// I'll clean up this code later, put all the fuctions here so I could get the window up and running
+
+
 class Boid : public Object
 {
 public:
+	Boid()
+	{
+		this->viewDistance = 100;
+		this->fov = 90;
+		this->velocity = 1.f;
+		this->direction = 0.f;
+	}
 	Boid(sf::Vector2f startingPosition, float radius, float viewDistance, float fov) : Object(startingPosition, radius)
 	{
 		this->viewDistance = viewDistance;

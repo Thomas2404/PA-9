@@ -200,10 +200,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BoidManager.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Node.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boid.h" />
+    <ClInclude Include="BoidManager.h" />
+    <ClInclude Include="Node.h" />
     <ClInclude Include="Object.h" />
   </ItemGroup>
   <ItemGroup>

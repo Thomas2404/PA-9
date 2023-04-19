@@ -5,6 +5,9 @@
 class Object : public sf::CircleShape
 {
 public:
+	Object() {};
+
+
 	Object(sf::Vector2f startingPosition, float radius) : sf::CircleShape(radius)
 	{
 		this->setPosition(startingPosition);

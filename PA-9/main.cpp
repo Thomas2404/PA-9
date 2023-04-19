@@ -1,4 +1,4 @@
-#include "Boid.h"
+#include "BoidManager.h"
 
 int main(void)
 {
@@ -9,16 +9,16 @@ int main(void)
 
 
 	Object o1(sf::Vector2f(500, 500), 50);
-	Boid b1(sf::Vector2f(500, 500), 25, 100, 90);
+	BoidManager manager;
 
-	//test comment
+	manager.populateList(10);
 
 	// initialize boids
 
 	// start loop
 		// draw boids
 		// move boids
-	// end loop
+	// end loop;
 
 
 	while (window.isOpen())
@@ -32,16 +32,11 @@ int main(void)
 				window.close();
 		}
 
-
-
-
 		window.clear();
 
-
-		window.draw(b1);
-
-		b1.move(deltaTime, 1000);
-		b1.turn(deltaTime, 5);
+		window.draw(*manager.getHeadPtr()->getBoid());
+		(*manager.getHeadPtr()->getBoid()).move(deltaTime, 1000);
+		(*manager.getHeadPtr()->getBoid()).turn(deltaTime, 5);
 
 
 		window.display();
