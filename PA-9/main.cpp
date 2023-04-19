@@ -1,7 +1,15 @@
 #include "BoidManager.h"
 
+
+// start loop
+	// draw boids
+	// move boids
+// end loop;
+
 int main(void)
 {
+	srand(time(NULL));
+
 	sf::RenderWindow window(sf::VideoMode(1000, 1000), "Boid Simulation");
 	sf::Event event;
 	sf::Clock clock;
@@ -11,15 +19,11 @@ int main(void)
 	Object o1(sf::Vector2f(500, 500), 50);
 	BoidManager manager;
 
+	// INITIALIZE BOIDS
 	manager.populateList(10);
+	manager.randomizePositions(window.getSize());
 
 	// initialize boids
-
-	// start loop
-		// draw boids
-		// move boids
-	// end loop;
-
 
 	while (window.isOpen())
 	{
@@ -32,14 +36,20 @@ int main(void)
 				window.close();
 		}
 
+		
+
+		// DRAW BOIDS
 		window.clear();
 
-		window.draw(*manager.getHeadPtr()->getBoid());
-		(*manager.getHeadPtr()->getBoid()).move(deltaTime, 1000);
-		(*manager.getHeadPtr()->getBoid()).turn(deltaTime, 5);
-
+		manager.drawBoids(window);
+		window.draw(o1);
 
 		window.display();
+
+
+		// MOVE BOIDS
+
+		
 	}
 
 

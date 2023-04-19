@@ -8,7 +8,7 @@ public:
 	Node()
 	{
 		this->pNext = nullptr;
-		this->pBoid = new Boid(*new sf::Vector2f(500, 500), 50, 300, 90);
+		this->pBoid = new Boid(*new sf::Vector2f(500, 500), 10, 300, 90);
 	};
 
 	void setNextPtr(Node* pNext);

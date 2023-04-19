@@ -14,6 +14,7 @@ public:
 		this->fov = 90;
 		this->velocity = 1.f;
 		this->direction = 0.f;
+		this->setRadius(10);
 	}
 	Boid(sf::Vector2f startingPosition, float radius, float viewDistance, float fov) : Object(startingPosition, radius)
 	{
