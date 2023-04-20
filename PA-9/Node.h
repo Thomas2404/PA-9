@@ -5,11 +5,8 @@
 class Node
 {
 public:
-	Node()
-	{
-		this->pNext = nullptr;
-		this->pBoid = new Boid(*new sf::Vector2f(500, 500), 10, 300, 90);
-	};
+	Node(Node* pNext = nullptr, Boid* pBoid = nullptr) {};
+	Node(sf::Vector2f position, sf::Vector2f velocity, float radius);
 
 	void setNextPtr(Node* pNext);
 	void setBoid(Boid* pBoid);

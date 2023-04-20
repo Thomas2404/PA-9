@@ -1,36 +1,54 @@
 #pragma once
 
 #include "Node.h"
-#include "Time.h"
+#include "VectorUtility.h"
+#include <time.h>
 
 // Contains a linked list of boids and controls them all
 class BoidManager
 {
 public:
-	BoidManager(Node* pHead = nullptr) {};
+	BoidManager(int boidCount, float boidRadius, float avoidFactor, float protectedRadius, float matchingFactor, float visibleRadius, float centeringFactor, 
+		float screenMargin, float turnFactor, float maxSpeed, float minSpeed);
 
-	// Inserts the given amount of boids the front of the linked list
-	bool populateList(int amount);
 
-	void drawBoids(sf::RenderWindow& window);
-
-	void randomizePositions(const sf::Vector2u& windowSize);
+	// INITIALIZATION
+	void init(sf::RenderWindow& window);
+	bool insertAtFront(sf::Vector2f position, sf::Vector2f velocity, float radius);
+	sf::Vector2f& randomPosition(sf::Vector2u windowSize);
+	sf::Vector2f& randomVelocity();
 	int randomNegative();
 
-	// Inserts a new node at the front of the linked list
-	bool insert();
+	// SIMULATION
+	void drawBoids(sf::RenderWindow& window);
 
-	Node* getHeadPtr();
+	void runSimulation(sf::Time deltaTime, sf::RenderWindow& window);
+
+	// UTILITY
+	float calculateDistance(sf::Vector2f v1, sf::Vector2f v2);
 
 
 	// BOID RULES
+	sf::Vector2f& separation(Boid& boid);
+	sf::Vector2f& alignment(Boid& boid);
+	sf::Vector2f& cohesion(Boid& boid);
 
-		// Move boids towards their precieved center of the flock
-		sf::Vector2f& rule1(Boid boid);
+	sf::Vector2f& screenEdges(sf::RenderWindow& window, Boid& boid);
+	void speedLimits(Boid& boid);
 
 private:
-	int boidCount;
-
 	Node* pHead;
 
+	int boidCount;
+	float boidRadius;
+	float protectedRadius;
+	float visibleRadius;
+	float matchingFactor;
+	float centeringFactor;
+	float screenMargin;
+	float turnFactor;
+	float maxSpeed;
+	float minSpeed;
+
+	float avoidFactor;
 };

@@ -1,5 +1,11 @@
 #include "Node.h"
 
+Node::Node(sf::Vector2f position, sf::Vector2f velocity, float radius)
+{
+	this->pBoid = new Boid(position, velocity, radius);
+	this->pNext = nullptr;
+}
+
 void Node::setNextPtr(Node* pNext)
 {
 	this->pNext = pNext;
