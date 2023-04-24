@@ -4,6 +4,7 @@
 #include "VectorUtility.h"
 #include <time.h>
 
+
 // Contains a linked list of boids and controls them all
 class BoidManager
 {

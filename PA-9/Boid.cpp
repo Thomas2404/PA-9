@@ -2,9 +2,14 @@
 
 Boid::Boid(sf::Vector2f startingPosition, sf::Vector2f startingVelocity, float radius)
 {
+	int r = rand() % 255;
+	int g = rand() % 255;
+	int b = rand() % 255;
+
 	this->setPosition(startingPosition);
 	this->velocity = startingVelocity;
 	this->setRadius(radius);
+	this->setFillColor(sf::Color(r, g, b));
 }
 
 
