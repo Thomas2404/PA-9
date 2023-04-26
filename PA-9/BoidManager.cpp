@@ -121,7 +121,10 @@ float BoidManager::calculateDistance(sf::Vector2f v1, sf::Vector2f v2)
 	return std::sqrt(std::pow(v2.x - v1.x, 2) + std::pow(v2.y - v1.y, 2));
 }
 
-
+Node* const BoidManager::getHeadPtr()
+{
+	return this->pHead;
+}
 
 // BOID RULES
 sf::Vector2f& BoidManager::separation(Boid& boid)
