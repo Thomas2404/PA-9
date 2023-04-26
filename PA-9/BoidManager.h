@@ -26,7 +26,7 @@ public:
 
 	// UTILITY
 	float calculateDistance(sf::Vector2f v1, sf::Vector2f v2);
-
+	Node* const getHeadPtr();
 
 	// BOID RULES
 	sf::Vector2f& separation(Boid& boid);

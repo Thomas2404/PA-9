@@ -15,7 +15,8 @@
 
 * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
 
-#include "BoidManager.h"
+#include "Test.h"
+//#include "BoidManager.h"
 
 int main(void)
 {
@@ -26,7 +27,11 @@ int main(void)
 	sf::Clock clock;
 	sf::Time deltaTime;
 
-	BoidManager manager(300, 2, 0.02, 30, 0.005, 70, 0.004, 200, 0.3, 50, 30);
+
+	Test test;
+	test.runTest();
+
+	BoidManager manager(300, 2, 0.02, 30, 0.005, 70, 0.004, 200, 0.3, 50, 30, 0.001);
 
 	// INITIALIZE BOIDS
 	manager.init(window);

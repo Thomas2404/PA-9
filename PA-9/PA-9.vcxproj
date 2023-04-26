@@ -204,11 +204,13 @@
     <ClCompile Include="BoidManager.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Node.cpp" />
+    <ClCompile Include="Test.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Boid.h" />
     <ClInclude Include="BoidManager.h" />
     <ClInclude Include="Node.h" />
+    <ClInclude Include="Test.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="readme.txt" />
