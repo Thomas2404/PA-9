@@ -16,7 +16,7 @@ Boid::Boid(sf::Vector2f startingPosition, sf::Vector2f startingVelocity, float r
 
 void Boid::move(sf::Time deltaTime)
 {
-	this->setPosition(this->getPosition() + (this->velocity * deltaTime.asSeconds()));
+	this->setPosition(this->getPosition() + (this->velocity * deltaTime.asSeconds() * 2.f));
 }
 
 void Boid::addVelocity(sf::Vector2f velocity)

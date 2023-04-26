@@ -26,7 +26,7 @@ int main(void)
 	sf::Clock clock;
 	sf::Time deltaTime;
 
-	BoidManager manager(150, 4, 0.0025, 30, 0.005, 70, 0.002, 300, 0.15, 50, 30, 0.001);
+	BoidManager manager(300, 2, 0.02, 30, 0.005, 70, 0.004, 200, 0.3, 50, 30);
 
 	// INITIALIZE BOIDS
 	manager.init(window);
