@@ -15,6 +15,9 @@ public:
 	// Testing of the random color feature in the Boid constructor. Tests to make sure that random colors are applied.
 	void testBoidColorConstructor();
 
+	// Testing to make sure that boids are assigned bias groups.
+	void testRandomBiasGroups();
+
 
 
 };

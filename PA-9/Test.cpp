@@ -5,6 +5,7 @@ void Test::runTest()
 {
 	testInit();
 	testBoidColorConstructor();
+	testRandomBiasGroups();
 }
 
 // Testing of the BoidManager.init function. Tests if the correct number of nodes are created.
@@ -36,4 +37,25 @@ void Test::testBoidColorConstructor()
 
 	if (b1.getFillColor() == b2.getFillColor() && b2.getFillColor() == b3.getFillColor()) std::cout << "Test boid color constructor failed." << std::endl;
 	else std::cout << "Test boid color constructor passed." << std::endl;
+}
+
+// Testing to make sure that boids are assigned bias groups.
+void Test::testRandomBiasGroups()
+{
+	BoidManager testManager(30, 2, 0.02, 30, 0.005, 70, 0.004, 200, 0.3, 50, 30, 0.001);
+	sf::RenderWindow testWindow(sf::VideoMode(1000, 1000), "Test Window");
+	testManager.init(testWindow);
+
+	Node* pCur = testManager.getHeadPtr();
+	int biasCount = 0;
+
+	while (pCur != nullptr)
+	{
+		if (pCur->getBoid()->getBiasGroup() != 0) biasCount++;
+
+		pCur = pCur->getNextPtr();
+	}
+
+	if (biasCount != 0) std::cout << "Test bias group assignment passed." << std::endl;
+	else std::cout << "Test bias group assignment failed." << std::endl;
 }
