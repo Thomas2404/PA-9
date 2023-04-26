@@ -1,6 +1,6 @@
 #include "Boid.h"
 
-Boid::Boid(sf::Vector2f startingPosition, sf::Vector2f startingVelocity, float radius)
+Boid::Boid(sf::Vector2f startingPosition, sf::Vector2f startingVelocity, float radius, int biasGroup)
 {
 	int r = rand() % 255;
 	int g = rand() % 255;
@@ -10,6 +10,7 @@ Boid::Boid(sf::Vector2f startingPosition, sf::Vector2f startingVelocity, float r
 	this->velocity = startingVelocity;
 	this->setRadius(radius);
 	this->setFillColor(sf::Color(r, g, b));
+	this->biasGroup = biasGroup;
 }
 
 
@@ -31,6 +32,11 @@ void Boid::setVelocity(sf::Vector2f velocity)
 sf::Vector2f& Boid::getVelocity()
 {
 	return this->velocity;
+}
+
+int Boid::getBiasGroup()
+{
+	return this->biasGroup;
 }
 
 bool Boid::operator==(const Boid& other)

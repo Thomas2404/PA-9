@@ -1,7 +1,8 @@
 #include "BoidManager.h"
 
-BoidManager::BoidManager(int boidCount = 0, float boidRadius = 5, float avoidFactor = 0.001, float protectedRadius = 20, float matchingFactor = 0.001, 
-	float visibleRadius = 100, float centeringFactor = 0.001, float screenMargin = 100, float turnFactor = 0.001, float maxSpeed = 6, float minSpeed = 3)
+BoidManager::BoidManager(int boidCount = 0, float boidRadius = 5, float avoidFactor = 0.001, float protectedRadius = 20, float matchingFactor = 0.001,
+	float visibleRadius = 100, float centeringFactor = 0.001, float screenMargin = 100, float turnFactor = 0.001, float maxSpeed = 6,
+	float minSpeed = 3, float biasValue = 0.0001)
 {
 	this->pHead = nullptr;
 	this->boidCount = boidCount;
@@ -15,19 +16,27 @@ BoidManager::BoidManager(int boidCount = 0, float boidRadius = 5, float avoidFac
 	this->turnFactor = turnFactor;
 	this->maxSpeed = maxSpeed;
 	this->minSpeed = minSpeed;
+	this->biasValue = biasValue;
 }
 
 void BoidManager::init(sf::RenderWindow& window)
 {
+	int biasGroup = 0;
+
 	for (int i = 0; i < this->boidCount; i++)
 	{
-		insertAtFront(randomPosition(window.getSize()), randomVelocity(), this->boidRadius);
+		if (i % 5 == 0) biasGroup = 1;
+		else if (i % 6 == 0) biasGroup = 2;
+
+		insertAtFront(randomPosition(window.getSize()), randomVelocity(), this->boidRadius, biasGroup);
+
+		biasGroup = 0;
 	}
 }
 
-bool BoidManager::insertAtFront(sf::Vector2f position, sf::Vector2f velocity, float radius)
+bool BoidManager::insertAtFront(sf::Vector2f position, sf::Vector2f velocity, float radius, int biasGroup)
 {
-	Node* pMem = new Node(position, velocity, radius);
+	Node* pMem = new Node(position, velocity, radius, biasGroup);
 
 	if (pMem == nullptr) return false;
 
@@ -96,6 +105,7 @@ void BoidManager::runSimulation(sf::Time deltaTime, sf::RenderWindow& window)
 		total = (r1 + r2 + r3 + pushBack);
 
 		pCur->getBoid()->addVelocity(total);
+		biasGroups(*pCur->getBoid());
 		speedLimits(*pCur->getBoid());
 		pCur->getBoid()->move(deltaTime);
 
@@ -211,4 +221,22 @@ void BoidManager::speedLimits(Boid& boid)
 	{
 		boid.setVelocity((boid.getVelocity() / speed)*  this->minSpeed);
 	}
+}
+
+void BoidManager::biasGroups(Boid& boid)
+{
+	sf::Vector2f newVelocity = boid.getVelocity();
+
+	if (boid.getBiasGroup() == 0) return;
+
+	else if (boid.getBiasGroup() == 1)
+	{
+		newVelocity.x = (1 - this->biasValue) * newVelocity.x + (this->biasValue * 1);
+	}
+	else if (boid.getBiasGroup() == 2)
+	{
+		newVelocity.x = (1 - this->biasValue) * newVelocity.x + (this->biasValue * (-1));
+	}
+
+	boid.setVelocity(newVelocity);
 }

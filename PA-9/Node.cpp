@@ -1,8 +1,8 @@
 #include "Node.h"
 
-Node::Node(sf::Vector2f position, sf::Vector2f velocity, float radius)
+Node::Node(sf::Vector2f position, sf::Vector2f velocity, float radius, int biasGroup)
 {
-	this->pBoid = new Boid(position, velocity, radius);
+	this->pBoid = new Boid(position, velocity, radius, biasGroup);
 	this->pNext = nullptr;
 }
 

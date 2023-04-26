@@ -1,7 +1,6 @@
 #pragma once
 
 #include "Node.h"
-#include "VectorUtility.h"
 #include <time.h>
 
 
@@ -10,12 +9,12 @@ class BoidManager
 {
 public:
 	BoidManager(int boidCount, float boidRadius, float avoidFactor, float protectedRadius, float matchingFactor, float visibleRadius, float centeringFactor, 
-		float screenMargin, float turnFactor, float maxSpeed, float minSpeed);
+		float screenMargin, float turnFactor, float maxSpeed, float minSpeed, float biasValue);
 
 
 	// INITIALIZATION
 	void init(sf::RenderWindow& window);
-	bool insertAtFront(sf::Vector2f position, sf::Vector2f velocity, float radius);
+	bool insertAtFront(sf::Vector2f position, sf::Vector2f velocity, float radius, int biasGroup);
 	sf::Vector2f& randomPosition(sf::Vector2u windowSize);
 	sf::Vector2f& randomVelocity();
 	int randomNegative();
@@ -36,6 +35,7 @@ public:
 
 	sf::Vector2f& screenEdges(sf::RenderWindow& window, Boid& boid);
 	void speedLimits(Boid& boid);
+	void biasGroups(Boid& boid);
 
 private:
 	Node* pHead;
@@ -50,6 +50,6 @@ private:
 	float turnFactor;
 	float maxSpeed;
 	float minSpeed;
-
 	float avoidFactor;
+	float biasValue;
 };

@@ -6,7 +6,7 @@ class Node
 {
 public:
 	Node(Node* pNext = nullptr, Boid* pBoid = nullptr) {};
-	Node(sf::Vector2f position, sf::Vector2f velocity, float radius);
+	Node(sf::Vector2f position, sf::Vector2f velocity, float radius, int biasGroup);
 
 	void setNextPtr(Node* pNext);
 	void setBoid(Boid* pBoid);
