@@ -18,6 +18,8 @@ public:
 	// Testing to make sure that boids are assigned bias groups.
 	void testRandomBiasGroups();
 
+	// Tests the calculateDistance utility function to make sure it calculates the right values.
+	void testDistanceFunction();
 
 
 };

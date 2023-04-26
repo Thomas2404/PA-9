@@ -6,6 +6,7 @@ void Test::runTest()
 	testInit();
 	testBoidColorConstructor();
 	testRandomBiasGroups();
+	testDistanceFunction();
 }
 
 // Testing of the BoidManager.init function. Tests if the correct number of nodes are created.
@@ -58,4 +59,17 @@ void Test::testRandomBiasGroups()
 
 	if (biasCount != 0) std::cout << "Test bias group assignment passed." << std::endl;
 	else std::cout << "Test bias group assignment failed." << std::endl;
+}
+
+// Tests the calculateDistance utility function to make sure it calculates the right values.
+void Test::testDistanceFunction()
+{
+	BoidManager testManager(30, 2, 0.02, 30, 0.005, 70, 0.004, 200, 0.3, 50, 30, 0.001);
+	sf::Vector2f v1(0, 0), v2(5, 0); // expected distance = 5
+	float distance = 0.f;
+
+	distance = testManager.calculateDistance(v1, v2);
+
+	if (distance == 5.f) std::cout << "Test distance calculation passed." << std::endl;
+	else std::cout << "Test distance calculation failed" << std::endl;
 }
