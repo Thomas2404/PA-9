@@ -7,6 +7,7 @@ void Test::runTest()
 	testBoidColorConstructor();
 	testRandomBiasGroups();
 	testDistanceFunction();
+	testRandomVelocity();
 }
 
 // Testing of the BoidManager.init function. Tests if the correct number of nodes are created.
@@ -72,4 +73,26 @@ void Test::testDistanceFunction()
 
 	if (distance == 5.f) std::cout << "Test distance calculation passed." << std::endl;
 	else std::cout << "Test distance calculation failed" << std::endl;
+}
+
+// Tests the randomVelocity function to be sure that the boids will have different velocities.
+void Test::testRandomVelocity()
+{
+	BoidManager testManager(30, 2, 0.02, 30, 0.005, 70, 0.004, 200, 0.3, 50, 30, 0.001);
+	
+	sf::Vector2f v1(0, 0), v2(0, 0), v3(0,0);
+
+	v1 = testManager.randomVelocity();
+	v2 = testManager.randomVelocity();
+	v3 = testManager.randomVelocity();
+
+	if (v1 == v2 && v2 == v3)
+	{
+		std::cout << "Test random velocity failed." << std::endl;
+	}
+	else
+	{
+		std::cout << "Test random velocity passed." << std::endl;
+	}
+	
 }

@@ -21,5 +21,7 @@ public:
 	// Tests the calculateDistance utility function to make sure it calculates the right values.
 	void testDistanceFunction();
 
+	// Tests the randomVelocity function to be sure that the boids will have different velocities.
+	void testRandomVelocity();
 
 };
